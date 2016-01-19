@@ -1,3 +1,6 @@
+import java.util.*;
+import java.util.stream.Collectors;
+
 /**
  * Created by KZ4RJG on 1/13/2016.
  */
@@ -46,8 +49,22 @@ public class PairFider {
     }
 
     public static void main(String[] args) {
-
+        int value = 3;
         int[] arr = {0,1,1,3,2};
-        summer(arr,3);
+        int[] sortedArr = MergeSort.sort(arr);
+        List<Integer> list = new ArrayList<>();
+                Collections.addAll(list, Arrays.stream(sortedArr).boxed().toArray(Integer[]::new));
+//                Arrays.stream(sortedArr).boxed().collect(Collectors.toList());
+        HashSet<Integer> hashSet = new HashSet<Integer>(list);
+
+        for(int i = 0; i <= sortedArr.length/2;i++ ){
+
+            int findVal = value - sortedArr[i];
+            if(hashSet.contains(findVal)){
+                System.out.println(arr[i]+findVal);
+            }
+        }
+
+        summer(arr, 3);
     }
 }
